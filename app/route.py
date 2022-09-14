@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import render_template, flash, request, redirect, url_for
 from app.webforms import SearchForm, Register, PostForm, Login, Form, DashForm, AdminForm
 from app.model import User, Post
@@ -247,7 +248,7 @@ def logout():
     flash("you have been logged out")
     return redirect(url_for("login"))
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def index():
     return render_template("index.html")
 
