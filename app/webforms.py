@@ -1,5 +1,3 @@
-from importlib.resources import contents
-import profile
 from wtforms.widgets import TextArea
 from flask_wtf import FlaskForm
 from flask_ckeditor import CKEditorField

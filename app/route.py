@@ -1,4 +1,3 @@
-from crypt import methods
 from flask import render_template, flash, request, redirect, url_for
 from app.webforms import SearchForm, Register, PostForm, Login, Form, DashForm, AdminForm
 from app.model import User, Post
@@ -26,7 +25,7 @@ def register():
         return redirect(url_for("dashboard"))
     if form.errors != {}:
         for err_msg in form.errors.values():
-            flash(f"there was an error creating user: {err_msg}", category='danger')
+            flash(f"there was an error creating user: {err_msg}")
     return render_template("add_user.html", form=form)
 
 @app.route("/add_posts", methods=['GET', 'POST'])
