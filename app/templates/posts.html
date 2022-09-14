@@ -6,7 +6,7 @@
 {% for post in posts %}
     <div class="shadow p-3 mb-5 bg-body rounded">
         <h4><a href="{{ url_for('post', id=post.id) }}">{{ post.title }}</a></h4>
-        <h6>By: <small>{{ post.poster.name }} | {{ post.date_posted }} </small></h6>
+        <h6>By: <small>{{ post.poster.name }} | {{ post.date_posted.strftime("%d-%m-%y") }} </small></h6>
         <p>{{ post.content|safe }}</p>
         
         <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('post', id=post.id) }}">View</a>

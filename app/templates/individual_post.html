@@ -4,9 +4,10 @@
 {% block content %}
 <div class="shadow p-3 mb-5 bg-body rounded">
     <h4>{{ posts.title }}</h4>
-    <h6>By: <small>{{ posts.poster.name }} | {{ posts.date_posted }} </small></h6>
+    <h6>By: <small>{{ posts.poster.name }} | {{ posts.date_posted.strftime("%d-%m-%y") }} </small></h6>
     <p>{{ posts.content|safe }}</p>
-    {% if current_user.id == posts.poster.id %}
+
+    
     <div class="card mb-3">
         <div class="row no-gutter">
             <!-- <div class="col-md-2">
@@ -32,6 +33,7 @@
             </div>
         </div>
     </div>
+    {% if current_user.id == posts.poster.id or current_user.id == 1 %}
     <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('update', id=posts.id) }}">Edit</a>
     <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('delete', id=posts.id) }}">Delete</a>
     {% endif %}

@@ -74,20 +74,7 @@ def update(id):
     form.content.data = posts.content
     return render_template("update.html", form=form)
 
-# delete post
-@app.route("/delete/<int:id>", methods=['GET', 'POST'])
-@login_required
-def delete(id):
-    id = current_user.id
-    post_to_be_deleted = Post.query.get_or_404(id)
-    if id == post_to_be_deleted.id or id == 1:
-        db.session.delete(post_to_be_deleted)
-        db.session.commit()
-        flash("post deleted successfully")
-        return redirect(url_for("posts"))
-    else:
-        flash("you are not authorized to carry out this operation...")
-        return redirect(url_for("posts"))
+
 
 # dashboards
 @app.route("/dashboard", methods=['GET', 'POST'])
@@ -225,6 +212,21 @@ def deleteuser(id):
     db.session.delete(user_to_be_deleted)
     db.session.commit()
     return redirect(url_for('admin')) 
+
+# delete post
+@app.route("/delete/<int:id>", methods=['GET', 'POST'])
+@login_required
+def delete(id):
+    userid = current_user.id
+    post_to_be_deleted = Post.query.get_or_404(id)
+    if userid == post_to_be_deleted.poster.id or userid == 1:
+        db.session.delete(post_to_be_deleted)
+        db.session.commit()
+        flash("post deleted successfully")
+        return redirect(url_for("posts"))
+    else:
+        flash("you are not authorized to carry out this operation...")
+        return redirect(url_for("posts"))
 
 # login route
 @app.route("/login", methods=['GET', 'POST'])
