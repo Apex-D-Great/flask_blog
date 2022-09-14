@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <h1>Update Dashboard</h1>
+    <br>
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+
+        {{ form.name.label(class="label-control") }}
+        {{ form.name(class="form-control", value=user_to_update.name) }}
+        <br>
+        {{ form.email.label(class="label-control" ) }}
+        {{ form.email(class="form-control", value=user_to_update.email) }}
+        <br>
+        {{ form.about.label(class="label-control" ) }}
+        {{ form.about(class="form-control", value=user_to_update.about, rows="3") }}
+        <br>
+        {{ form.submit(class="btn btn-secondary") }}
+    </form>
+    <br>
+    <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('dashboard') }}">Go Back To Dashboard</a>
+{% endblock %}

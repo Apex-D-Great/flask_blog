@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="shadow p-3 mb-5 bg-body rounded">
+    <h4>{{ posts.title }}</h4>
+    <h6>By: <small>{{ posts.poster.name }} | {{ posts.date_posted }} </small></h6>
+    <p>{{ posts.content|safe }}</p>
+    {% if current_user.id == posts.poster.id %}
+    <div class="card mb-3">
+        <div class="row no-gutter">
+            <!-- <div class="col-md-2">
+                {% if posts.poster.profile_pic %}
+                <img src="{{ url_for('static', filename='/images/{{ current_user.profile_pic }}') }}" alt="profile_pic" width="200">
+                {% else %}
+                <img src="{{ url_for('static', filename='/images/profile.png.jpg') }}" alt="profile_pic" width="300">
+                {% endif %}
+            </div> -->
+            <div class="col-md-6">
+                <div class="card-body">
+                    <div class="card-title">
+                        Author: {{ posts.poster.name }}
+                    </div>
+                    <div class="card-text">
+                        {% if posts.poster.about %}
+                            About: {{ posts.poster.about }}
+                        {% else %}
+                            About: Author has no about profile yet....
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('update', id=posts.id) }}">Edit</a>
+    <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('delete', id=posts.id) }}">Delete</a>
+    {% endif %}
+</div>
+<a class="btn btn-outline-secondary btn-sm" href="{{ url_for('posts') }}">Blog Posts</a>
+{% endblock %}

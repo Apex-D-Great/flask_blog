@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <h1>Dashboard</h1>
+    <br>
+    <div class="shadow p-3 mb-5 bg-body rounded">
+        <div class="container">
+            <div class="row">
+                <div class="col-8">
+                    <h3>Welcome To My Dashboard</h3>
+                    <h6><strong>UserName: </strong>{{ current_user.name|upper }}</h6>
+                    <h6><strong>Email: </strong>{{ current_user.email }}</h6>
+                    <h6><strong>User_ID: </strong>{{ current_user.id }}</h6>
+                    <h6><strong>About: </strong>{{ current_user.about }}</h6>
+                    <h6><strong>Joined_Since: </strong>{{ current_user.date_added }}</h6>
+                    <br>
+                    <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('update_dashboard') }}">Edit</a>
+                    <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('logout') }}">Logout</a>
+                </div>
+                <!-- <div class="col-4">
+                    {% if current_user.profile_pic %}
+                    <img src="{{ url_for('static', filename='/images/{{ current_user.profile_pic }}') }}" alt="profile_pic" width="200">
+                    {% else %}
+                    <img src="{{ url_for('static', filename='/images/profile.png.jpg') }}" alt="profile_pic" width="300">
+                    {% endif %}
+                </div> -->
+            </div>
+        </div>
+    </div>
+{% endblock %}

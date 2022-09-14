@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content%}
+    <h5>Welcome to admin page</h5>
+    <div class="center">
+        <form class="d-flex" method="POST" action="{{ url_for('adminsearch') }}">
+            {{ form.hidden_tag() }}
+            <input class="form-control me-2" type="search" name="adminsearch" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+        </form>
+    </div>
+    <br><br>
+    <div>
+    
+        {{ user.name }} | {{ user.email }}
+        <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('deleteuser', id=user.id) }}">Delete</a>
+    </div>
+{% endblock %}
