@@ -248,11 +248,11 @@ def logout():
     flash("you have been logged out")
     return redirect(url_for("login"))
 
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/", methods=['GET','POST'])
 def index():
     return render_template("index.html")
 
-@app.route("/name", methods=['GET', 'POST'])
+@app.route("/name", methods=['GET','POST'])
 def name():
     name = None
     form = Form() 
